@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlightPulse — Live Flight Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M17.8 19.2L16 11l3.5-3.5C21 6 21 4 19.5 2.5S18 1 16.5 3L13 6.5l-8.2-1.8L4 6l7 4-3 3-2-.5L4 14l4 2 2 4 2-1 .5-2 3-3 4 7z"/>
+    </svg>
+    FlightPulse
+  </div>
+  <div class="api-status">
+    <div class="api-badge" id="badge-flights"><div class="dot"></div>Live Flights</div>
+    <div class="api-badge" id="badge-weather"><div class="dot"></div>Weather</div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+
+  <div class="hero">
+    <h1>Live Flight Tracker</h1>
+    <p>Search a flight number below, or browse live flights currently in the air.</p>
+  </div>
+
+  <!-- Search -->
+  <div class="search-box">
+    <label>Flight Number</label>
+    <div class="search-row">
+      <input
+        type="text"
+        id="flight-input"
+        placeholder="e.g. DAL820, QF28, LY495, TK750, N992DB"
+        autocomplete="off"
+      />
+      <button class="btn" onclick="searchFlight()">Search</button>
+    </div>
+  </div>
+
+  <!-- Search results appear here -->
+  <div id="results"></div>
+
+  <!-- Live flights feed -->
+  <div id="live-section">
+    <div class="section-title">
+      <div class="live-dot"></div>
+      Live Flights
+    </div>
+    <div id="live-grid" class="live-grid">
+      <div class="state-msg"><span class="spinner"></span> Loading flights…</div>
+    </div>
+  </div>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
