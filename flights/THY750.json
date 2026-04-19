@@ -1,0 +1,57 @@
+{
+  "flightId": "THY750",
+  "aliases": ["THY750", "TK750", "TURKAIR750"],
+  "airline": "Turkish Airlines",
+  "iataCode": "TK750",
+  "icaoCode": "THY750",
+  "status": "active",
+  "aircraft": {
+    "type": "Airbus A330-300",
+    "code": "A333",
+    "tailNumber": "N/A"
+  },
+  "date": "2026-04-16",
+  "departure": {
+    "iata": "IST",
+    "name": "Istanbul Airport",
+    "city": "Istanbul, Turkey",
+    "terminal": null,
+    "gate": "B15",
+    "scheduledGate": "2026-04-16T00:40:00+03:00",
+    "actualGate": "2026-04-16T00:50:00+03:00",
+    "scheduledTakeoff": "2026-04-16T00:50:00+03:00",
+    "actualTakeoff": "2026-04-16T01:20:00+03:00",
+    "taxiMinutes": 30,
+    "delayMinutes": 10
+  },
+  "arrival": {
+    "iata": "ISB",
+    "name": "Islamabad International Airport",
+    "city": "Islamabad, Pakistan",
+    "terminal": null,
+    "gate": null,
+    "scheduledGate": "2026-04-16T07:45:00+05:00",
+    "estimatedGate": "2026-04-16T08:05:00+05:00",
+    "scheduledLanding": "2026-04-16T07:25:00+05:00",
+    "estimatedLanding": "2026-04-16T07:55:00+05:00",
+    "taxiMinutes": 10,
+    "delayMinutes": 20
+  },
+  "route": "Eastbound over Turkey and Iran",
+  "routeMapImage": "./images/THY750_map.png",
+  "altitudeGraphImage": "./images/THY750_graph.png",
+  "progress": {
+    "milesFlown": 374,
+    "milesDirect": 2453,
+    "milesPlanned": 2453,
+    "minutesElapsed": 52,
+    "minutesTotal": 285,
+    "percentComplete": 18
+  },
+  "telemetry": {
+    "altitude": 35000,
+    "altitudePlanned": 35000,
+    "speed": 580,
+    "speedPlanned": 517
+  }
+}
