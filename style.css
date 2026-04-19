@@ -1,0 +1,793 @@
+/* =============================================================================
+   FlightPulse — Main Stylesheet
+   Author: Sam
+   Description: Styles for the FlightPulse live flight tracker web app.
+   ============================================================================= */
+
+
+/* =============================================================================
+   1. CSS VARIABLES & RESET
+   ============================================================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg:       #070b14;
+  --surface:  #0e1525;
+  --surface2: #151e33;
+  --border:   #1f2d4a;
+  --blue:     #ccd6db;
+  --green:    #00aaff;
+  --amber:    #00aaff;
+  --red:      #ff4757;
+  --text:     #e8eef8;
+  --muted:    #6b7a96;
+  --radius:   12px;
+}
+
+
+/* =============================================================================
+   2. BASE / BODY
+   ============================================================================= */
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  cursor: none;
+}
+
+a, button, input, [onclick],
+.live-card, .btn, .data-cell, .wx-card {
+  cursor: none;
+}
+
+
+/* =============================================================================
+   3. HEADER & NAVIGATION
+   ============================================================================= */
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+header, main {
+  position: relative;
+  z-index: 1;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--blue);
+  animation: logoGlow 5s ease-in-out infinite;
+}
+
+.api-status {
+  display: flex;
+  gap: .7rem;
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.api-badge {
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+  color: var(--muted);
+  padding: .28rem .6rem;
+  background: var(--surface2);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  transition: color .3s, transform .2s, box-shadow .2s;
+}
+
+.api-badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.api-badge .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--amber);
+  transition: background .4s;
+}
+
+.api-badge.ok .dot { background: var(--green); }
+.api-badge.ok      { color: var(--text); }
+
+
+/* =============================================================================
+   4. LAYOUT — MAIN & HERO
+   ============================================================================= */
+
+main {
+  padding: 2rem;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.hero {
+  text-align: center;
+  padding: 2rem 0 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero h1 {
+  font-size: 2rem;
+  margin-bottom: .4rem;
+  color: var(--amber);
+  animation: heroGlow 4s ease-in-out infinite;
+}
+
+.hero p {
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+/* Decorative airplane that flies across the hero background */
+.flying-plane-hero {
+  position: absolute;
+  top: 55%;
+  right: -80px;
+  transform: translateY(-50%);
+  color: var(--blue);
+  opacity: 0.1;
+  pointer-events: none;
+  animation: flyAcross 14s linear infinite;
+}
+
+
+/* =============================================================================
+   5. SEARCH BOX
+   ============================================================================= */
+
+.search-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.4rem;
+  margin-bottom: 2rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.search-box:focus-within {
+  border-color: rgba(255, 171, 0, 0.55);
+  box-shadow: 0 0 22px rgba(255, 171, 0, 0.1);
+}
+
+.search-box label {
+  display: block;
+  font-size: .72rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: .8rem;
+}
+
+.search-row {
+  display: flex;
+  gap: .7rem;
+  flex-wrap: wrap;
+}
+
+.search-row input {
+  flex: 1;
+  min-width: 180px;
+  padding: .75rem 1rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: .95rem;
+  outline: none;
+  transition: border-color .2s;
+}
+
+.search-row input:focus       { border-color: var(--amber); }
+.search-row input::placeholder { color: var(--muted); }
+
+
+/* =============================================================================
+   6. BUTTON
+   ============================================================================= */
+
+.btn {
+  padding: .75rem 1.8rem;
+  border: none;
+  border-radius: 8px;
+  font-size: .9rem;
+  font-weight: 700;
+  background: var(--amber);
+  color: #000;
+  letter-spacing: .04em;
+  position: relative;
+  overflow: hidden;
+  transition: opacity .2s, transform .15s, box-shadow .2s;
+}
+
+.btn:hover {
+  opacity: 1;
+  box-shadow: 0 0 22px rgba(255, 171, 0, 0.45);
+  transform: translateY(-2px);
+}
+
+.btn:active { transform: scale(.97) translateY(0); }
+
+/* Radial shine sweep on hover */
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.28) 0%, transparent 70%);
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.45s ease, opacity 0.45s ease;
+}
+
+.btn:hover::before {
+  transform: scale(2.2);
+  opacity: 1;
+}
+
+
+/* =============================================================================
+   7. SECTION TITLE & LIVE DOT
+   ============================================================================= */
+
+.section-title {
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--muted);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+
+/* =============================================================================
+   8. FLIGHT DETAIL CARD
+   ============================================================================= */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  animation: fadeIn .3s ease;
+  transition: box-shadow 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.1rem;
+}
+
+.flight-id {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  font-family: 'Courier New', monospace;
+}
+
+.flight-id-small {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  font-family: 'Courier New', monospace;
+}
+
+.airline-name {
+  font-size: .78rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+
+/* =============================================================================
+   9. STATUS PILLS
+   ============================================================================= */
+
+.status-pill {
+  padding: .28rem .9rem;
+  border-radius: 99px;
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  transition: transform 0.2s;
+}
+
+.status-pill:hover        { transform: scale(1.05); }
+.status-scheduled         { background: rgba(255,171,0,.15);  color: var(--amber); border: 1px solid rgba(255,171,0,.3); }
+.status-active            { background: rgba(0,230,118,.15);  color: var(--green); border: 1px solid rgba(0,230,118,.3); }
+.status-landed            { background: rgba(107,122,150,.15); color: var(--muted); border: 1px solid var(--border); }
+.status-cancelled         { background: rgba(255,71,87,.15);  color: var(--red);   border: 1px solid rgba(255,71,87,.3); }
+
+
+/* =============================================================================
+   10. ROUTE BAR
+   ============================================================================= */
+
+.route-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+  padding: 1rem;
+  background: var(--surface2);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.airport-col    { min-width: 0; }
+.airport-code   { font-size: 2rem;  font-weight: 700; font-family: 'Courier New', monospace; }
+.airport-code-sm { font-size: 1.3rem; font-weight: 700; font-family: 'Courier New', monospace; }
+
+.airport-name {
+  font-size: .75rem;
+  color: var(--muted);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+
+.airport-time { font-size: .85rem; margin-top: 5px; }
+.delay-tag    { color: var(--red);   font-size: .78rem; }
+.early-tag    { color: var(--green); font-size: .78rem; }
+
+.route-mid {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  color: var(--muted);
+  min-width: 60px;
+}
+
+.route-mid hr {
+  flex: 1;
+  border: none;
+  border-top: 1px dashed var(--border);
+}
+
+
+/* =============================================================================
+   11. PROGRESS BAR
+   ============================================================================= */
+
+.progress-wrap { margin: 1.2rem 0; }
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: .68rem;
+  color: var(--muted);
+  font-family: 'Courier New', monospace;
+  margin-bottom: .5rem;
+}
+
+.progress-labels .pct {
+  color: var(--blue);
+  font-weight: 700;
+}
+
+.progress-track {
+  position: relative;
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  margin: 1rem 0 .3rem;
+}
+
+.progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--green));
+  border-radius: 2px;
+  transition: width .4s ease;
+}
+
+.progress-plane {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1;
+  animation: planePulse 2s ease-in-out infinite;
+}
+
+.progress-plane svg { display: block; }
+
+.progress-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: .7rem;
+  color: var(--muted);
+  margin-top: .5rem;
+}
+
+.progress-stats span { font-family: 'Courier New', monospace; }
+.progress-stats .hi  { color: var(--text); font-weight: 600; }
+
+
+/* =============================================================================
+   12. DATA GRID
+   ============================================================================= */
+
+.data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  gap: .85rem;
+  margin-bottom: 1rem;
+}
+
+.data-cell {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: .85rem;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.data-cell:hover {
+  background: var(--surface);
+  transform: scale(1.03);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.data-label {
+  font-size: .67rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--muted);
+  margin-bottom: .35rem;
+}
+
+.data-value {
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+}
+
+.data-value.warn { color: var(--red);   }
+.data-value.ok   { color: var(--green); }
+
+
+/* =============================================================================
+   13. WEATHER STRIP
+   ============================================================================= */
+
+.wx-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .85rem;
+  margin-top: .2rem;
+}
+
+.wx-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.wx-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.wx-label {
+  font-size: .68rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--muted);
+  margin-bottom: .6rem;
+}
+
+.wx-main {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: .55rem;
+}
+
+.wx-icon { font-size: 2.1rem; line-height: 1; }
+.wx-temp { font-size: 1.75rem; font-weight: 700; font-family: 'Courier New', monospace; }
+.wx-cond { font-size: .8rem; color: var(--muted); margin-top: 2px; }
+
+.wx-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .35rem .8rem;
+  font-size: .78rem;
+}
+
+.wx-row                    { display: flex; justify-content: space-between; }
+.wx-row span:first-child   { color: var(--muted); }
+.wx-row span:last-child    { font-weight: 600; font-family: 'Courier New', monospace; }
+.wx-na                     { color: var(--muted); font-size: .82rem; padding: .3rem 0; }
+
+
+/* =============================================================================
+   14. LIVE FLIGHTS GRID (COMPACT CARDS)
+   ============================================================================= */
+
+.live-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.live-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem;
+  transition: border-color .2s, transform .15s, box-shadow .2s;
+  animation: fadeIn .3s ease;
+}
+
+.live-card:hover {
+  border-color: var(--blue);
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px var(--blue), 0 8px 32px rgba(0, 170, 255, 0.15);
+}
+
+.live-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: .7rem;
+}
+
+.live-route-compact {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: .6rem;
+}
+
+.live-route-compact .dash {
+  flex: 1;
+  border: none;
+  border-top: 1px dashed var(--border);
+}
+
+.live-stats-row {
+  display: flex;
+  gap: 1rem;
+  font-size: .72rem;
+  color: var(--muted);
+  margin-top: .5rem;
+}
+
+.live-stats-row span { font-family: 'Courier New', monospace; }
+.live-stats-row .val { color: var(--text); font-weight: 600; }
+
+
+/* =============================================================================
+   15. STATE MESSAGES (LOADING / ERROR / SPINNER)
+   ============================================================================= */
+
+.state-msg {
+  text-align: center;
+  padding: 3rem;
+  color: var(--muted);
+  font-size: .92rem;
+}
+
+.state-msg .icon {
+  font-size: 2.5rem;
+  margin-bottom: .8rem;
+}
+
+.error-msg {
+  background: rgba(255, 71, 87, .08);
+  border: 1px solid rgba(255, 71, 87, .3);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  color: var(--red);
+  font-size: .88rem;
+  line-height: 1.6;
+}
+
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--border);
+  border-top-color: var(--amber);
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+  vertical-align: middle;
+  margin-right: .4rem;
+}
+
+
+/* =============================================================================
+   16. CUSTOM CURSOR & TRAIL
+   ============================================================================= */
+
+.cursor-plane {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  left: -200px;
+  top: -200px;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 0 8px rgba(0, 170, 255, 0.9));
+  transition: filter 0.15s, transform 0.15s;
+  will-change: left, top;
+}
+
+.cursor-trail {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9997;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: trailFade 0.5s ease-out forwards;
+}
+
+
+/* =============================================================================
+   17. STARFIELD CANVAS
+   ============================================================================= */
+
+#starfield {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+/* =============================================================================
+   18. SCROLL REVEAL
+   ============================================================================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* =============================================================================
+   19. IMAGE HOVER ZOOM
+   ============================================================================= */
+
+img[src$=".png"] {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+img[src$=".png"]:hover {
+  transform: scale(1.025);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
+}
+
+
+/* =============================================================================
+   20. CUSTOM SCROLLBAR
+   ============================================================================= */
+
+::-webkit-scrollbar       { width: 7px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--blue); }
+
+
+/* =============================================================================
+   21. KEYFRAME ANIMATIONS
+   ============================================================================= */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.6); opacity: 1; transform: scale(1); }
+  70%  { box-shadow: 0 0 0 8px rgba(0, 230, 118, 0); }
+  100% { opacity: .4; transform: scale(.7); box-shadow: 0 0 0 0 rgba(0, 230, 118, 0); }
+}
+
+@keyframes trailFade {
+  0%   { opacity: 0.9; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0;   transform: translate(-50%, -50%) scale(0.1); }
+}
+
+@keyframes logoGlow {
+  0%, 100% { filter: none; }
+  50%       { filter: drop-shadow(0 0 10px rgba(0, 170, 255, 0.7)); }
+}
+
+@keyframes heroGlow {
+  0%, 100% { text-shadow: none; }
+  50%       { text-shadow: 0 0 28px rgba(255, 171, 0, 0.55); }
+}
+
+@keyframes flyAcross {
+  0%   { right: -80px; opacity: 0;   }
+  6%   { opacity: 0.1; }
+  94%  { opacity: 0.1; }
+  100% { right: 110%;  opacity: 0;   }
+}
+
+@keyframes planePulse {
+  0%, 100% { filter: drop-shadow(0 0 5px rgba(0, 170, 255, .8)); }
+  50%       { filter: drop-shadow(0 0 16px rgba(0, 170, 255, 1)) drop-shadow(0 0 6px rgba(0, 230, 118, 0.4)); }
+}
+
+
+/* =============================================================================
+   22. RESPONSIVE — MOBILE
+   ============================================================================= */
+
+@media (max-width: 600px) {
+  header        { padding: .9rem 1rem; }
+  .api-status   { display: none; }
+  main          { padding: 1rem; }
+  .airport-code { font-size: 1.5rem; }
+  .wx-strip     { grid-template-columns: 1fr; }
+}

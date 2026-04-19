@@ -1,0 +1,57 @@
+{
+  "flightId": "GTI64",
+  "aliases": ["GTI64", "GT164", "GIANT64"],
+  "airline": "Atlas Air",
+  "iataCode": "5Y64",
+  "icaoCode": "GTI64",
+  "status": "active",
+  "aircraft": {
+    "type": "Boeing 747-400",
+    "code": "B744",
+    "tailNumber": "N/A"
+  },
+  "date": "2026-04-15",
+  "departure": {
+    "iata": "VCP",
+    "name": "Viracopos International Airport",
+    "city": "Campinas, Brazil",
+    "terminal": null,
+    "gate": null,
+    "scheduledGate": "2026-04-15T16:57:00-03:00",
+    "actualGate": "2026-04-15T16:57:00-03:00",
+    "scheduledTakeoff": "2026-04-15T17:07:00-03:00",
+    "actualTakeoff": "2026-04-15T17:20:00-03:00",
+    "taxiMinutes": 23,
+    "delayMinutes": -10
+  },
+  "arrival": {
+    "iata": "LIM",
+    "name": "Jorge Chavez International Airport",
+    "city": "Lima, Peru",
+    "terminal": null,
+    "gate": null,
+    "scheduledGate": null,
+    "estimatedGate": null,
+    "scheduledLanding": "2026-04-15T19:52:00-05:00",
+    "estimatedLanding": "2026-04-15T19:27:00-05:00",
+    "taxiMinutes": null,
+    "delayMinutes": -25
+  },
+  "route": "Direct",
+  "routeMapImage": "./images/GTI64_map.png",
+  "altitudeGraphImage": "./images/GTI64_graph.png",
+  "progress": {
+    "milesFlown": 1425,
+    "milesDirect": 2113,
+    "milesPlanned": 2113,
+    "minutesElapsed": 185,
+    "minutesTotal": 270,
+    "percentComplete": 68
+  },
+  "telemetry": {
+    "altitude": 34000,
+    "altitudePlanned": 34000,
+    "speed": 533,
+    "speedPlanned": 444
+  }
+}
