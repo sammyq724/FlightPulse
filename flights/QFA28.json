@@ -1,6 +1,10 @@
 {
   "flightId": "QFA28",
-  "aliases": ["QFA28", "QF28", "QANTAS28"],
+  "aliases": [
+    "QFA28",
+    "QF28",
+    "QANTAS28"
+  ],
   "airline": "Qantas Airways",
   "iataCode": "QF28",
   "icaoCode": "QFA28",
@@ -8,7 +12,7 @@
   "aircraft": {
     "type": "Boeing 787-9 Dreamliner",
     "code": "B789",
-    "tailNumber": "N/A"
+    "tailNumber": "VH-ZND"
   },
   "date": "2026-04-15",
   "departure": {
@@ -16,7 +20,7 @@
     "name": "Comodoro Arturo Merino Benitez International Airport",
     "city": "Santiago, Chile",
     "terminal": "2",
-    "gate": null,
+    "gate": "22",
     "scheduledGate": "2026-04-15T13:10:00-04:00",
     "actualGate": "2026-04-15T12:09:00-04:00",
     "scheduledTakeoff": "2026-04-15T13:20:00-04:00",
@@ -28,7 +32,7 @@
     "iata": "SYD",
     "name": "Sydney Kingsford Smith Airport",
     "city": "Sydney, Australia",
-    "terminal": null,
+    "terminal": "1",
     "gate": "34",
     "scheduledGate": "2026-04-16T17:40:00+10:00",
     "estimatedGate": "2026-04-16T16:56:00+10:00",
@@ -53,5 +57,16 @@
     "altitudePlanned": 33000,
     "speed": 563,
     "speedPlanned": 563
+  },
+  "cockpit": {
+    "heading": 244,
+    "verticalSpeed": -20,
+    "mach": 0.863,
+    "oat": -63,
+    "cabinAlt": 6500,
+    "autopilot": "LNAV/VNAV",
+    "bank": 0,
+    "pitch": 1,
+    "n1": 93
   }
 }

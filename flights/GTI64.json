@@ -8,15 +8,15 @@
   "aircraft": {
     "type": "Boeing 747-400",
     "code": "B744",
-    "tailNumber": "N/A"
+    "tailNumber": "N263SG"
   },
   "date": "2026-04-15",
   "departure": {
     "iata": "VCP",
     "name": "Viracopos International Airport",
     "city": "Campinas, Brazil",
-    "terminal": null,
-    "gate": null,
+    "terminal": "C",
+    "gate": "C4",
     "scheduledGate": "2026-04-15T16:57:00-03:00",
     "actualGate": "2026-04-15T16:57:00-03:00",
     "scheduledTakeoff": "2026-04-15T17:07:00-03:00",
@@ -28,13 +28,13 @@
     "iata": "LIM",
     "name": "Jorge Chavez International Airport",
     "city": "Lima, Peru",
-    "terminal": null,
-    "gate": null,
-    "scheduledGate": null,
-    "estimatedGate": null,
+    "terminal": "A",
+    "gate": "A7",
+    "scheduledGate": "2026-04-15T19:27:00-05:00",
+    "estimatedGate": "2026-04-15T19:27:00-05:00",
     "scheduledLanding": "2026-04-15T19:52:00-05:00",
     "estimatedLanding": "2026-04-15T19:27:00-05:00",
-    "taxiMinutes": null,
+    "taxiMinutes": 18,
     "delayMinutes": -25
   },
   "route": "Direct",
@@ -53,5 +53,16 @@
     "altitudePlanned": 34000,
     "speed": 533,
     "speedPlanned": 444
+  },
+  "cockpit": {
+    "heading": 295,
+    "verticalSpeed": -130,
+    "mach": 0.819,
+    "oat": -59,
+    "cabinAlt": 7200,
+    "autopilot": "LNAV/VNAV",
+    "bank": 0,
+    "pitch": 1,
+    "n1": 91
   }
 }

@@ -73,9 +73,11 @@ header, main {
   display: flex;
   align-items: center;
   gap: .6rem;
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--blue);
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: .08em;
   animation: logoGlow 5s ease-in-out infinite;
 }
 
@@ -137,6 +139,9 @@ main {
   font-size: 2rem;
   margin-bottom: .4rem;
   color: var(--amber);
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  letter-spacing: .06em;
   animation: heroGlow 4s ease-in-out infinite;
 }
 
@@ -257,14 +262,15 @@ main {
    ============================================================================= */
 
 .section-title {
-  font-size: .7rem;
+  font-size: .65rem;
   text-transform: uppercase;
-  letter-spacing: .12em;
+  letter-spacing: .15em;
   color: var(--muted);
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
   gap: .6rem;
+  font-family: 'Orbitron', sans-serif;
 }
 
 .section-title::after {
@@ -309,17 +315,17 @@ main {
 }
 
 .flight-id {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  letter-spacing: .06em;
-  font-family: 'Courier New', monospace;
+  letter-spacing: .08em;
+  font-family: 'Orbitron', sans-serif;
 }
 
 .flight-id-small {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
-  letter-spacing: .06em;
-  font-family: 'Courier New', monospace;
+  letter-spacing: .08em;
+  font-family: 'Orbitron', sans-serif;
 }
 
 .airline-name {
@@ -366,8 +372,8 @@ main {
 }
 
 .airport-col    { min-width: 0; }
-.airport-code   { font-size: 2rem;  font-weight: 700; font-family: 'Courier New', monospace; }
-.airport-code-sm { font-size: 1.3rem; font-weight: 700; font-family: 'Courier New', monospace; }
+.airport-code   { font-size: 1.8rem; font-weight: 700; font-family: 'Orbitron', sans-serif; letter-spacing: .05em; }
+.airport-code-sm { font-size: 1.1rem; font-weight: 700; font-family: 'Orbitron', sans-serif; letter-spacing: .05em; }
 
 .airport-name {
   font-size: .75rem;
@@ -781,7 +787,326 @@ img[src$=".png"]:hover {
 
 
 /* =============================================================================
-   22. RESPONSIVE — MOBILE
+   22. COCKPIT VIEW
+   ============================================================================= */
+
+.cockpit-section {
+  margin-bottom: 1.2rem;
+}
+
+.cockpit-hud {
+  background: #030608;
+  border: 1px solid #1a2540;
+  border-radius: var(--radius);
+  padding: 1.2rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 40px rgba(0, 170, 255, 0.03);
+}
+
+/* Per-flight cockpit cam (inside detail card) */
+.cockpit-video-wrap {
+  margin-top: 1rem;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #1a2540;
+}
+
+.cockpit-video-label {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-size: .62rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: #3a4a6a;
+  font-family: 'Courier New', monospace;
+  padding: .5rem .75rem;
+  background: #040810;
+  border-bottom: 1px solid #1a2540;
+}
+
+.cockpit-live-badge {
+  color: #ff4757;
+  font-weight: 700;
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+.cockpit-video {
+  width: 100%;
+  display: block;
+  max-height: 280px;
+  object-fit: cover;
+  background: #000;
+}
+
+/* Global cockpit feeds section */
+.cockpit-feeds-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.feed-card {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #000;
+  aspect-ratio: 16 / 9;
+  transition: border-color .2s, transform .15s, box-shadow .2s;
+}
+
+.feed-card:hover {
+  border-color: var(--blue);
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px var(--blue), 0 8px 32px rgba(0, 170, 255, 0.12);
+}
+
+.feed-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.feed-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: .6rem .8rem;
+  background: linear-gradient(transparent, rgba(3, 6, 8, 0.92));
+  display: flex;
+  align-items: flex-end;
+  gap: .5rem;
+}
+
+.feed-badge {
+  font-size: .58rem;
+  font-weight: 700;
+  color: #ff4757;
+  font-family: 'Courier New', monospace;
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+.feed-id {
+  font-size: .85rem;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+  color: var(--text);
+  flex: 1;
+}
+
+.feed-route {
+  font-size: .68rem;
+  color: var(--muted);
+  font-family: 'Courier New', monospace;
+}
+
+/* CRT scanline overlay */
+.cockpit-hud::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.07) 2px,
+    rgba(0, 0, 0, 0.07) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cockpit-primary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.cockpit-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+}
+
+.cockpit-panel-label {
+  font-size: .58rem;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: #3a4a6a;
+  font-family: 'Courier New', monospace;
+  text-align: center;
+}
+
+.cockpit-compass-wrap,
+.cockpit-ai-wrap,
+.cockpit-vsi-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .45rem;
+  width: 100%;
+}
+
+.cockpit-compass-base,
+.cockpit-vsi-svg {
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 0 8px rgba(0, 170, 255, 0.25));
+}
+
+/* Attitude Indicator */
+.cockpit-ai-clip {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid #1a2540;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 14px rgba(0, 170, 255, 0.15), inset 0 0 20px rgba(0, 0, 0, 0.6);
+  flex-shrink: 0;
+}
+
+.cockpit-ai-ball {
+  width: 100%;
+  height: 200%;
+  position: absolute;
+  top: -50%;
+  transform-origin: 50% 50%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s ease;
+}
+
+.cockpit-ai-sky {
+  flex: 1;
+  background: linear-gradient(180deg, #061830 0%, #0b2e5e 60%, #0d3d7a 100%);
+}
+
+.cockpit-ai-horizon {
+  height: 2px;
+  background: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+}
+
+.cockpit-ai-ground {
+  flex: 1;
+  background: linear-gradient(180deg, #3d1e08 0%, #5c2e10 40%, #4a2610 100%);
+}
+
+.cockpit-ai-wings {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.wing-left, .wing-right {
+  width: 30px;
+  height: 3px;
+  background: #ffab00;
+  border-radius: 2px;
+  box-shadow: 0 0 4px rgba(255, 171, 0, 0.7);
+}
+
+.wing-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ffab00;
+  margin: 0 4px;
+  box-shadow: 0 0 6px rgba(255, 171, 0, 0.9);
+}
+
+.cockpit-ai-center-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #fff;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+.cockpit-ai-readout {
+  display: flex;
+  gap: .9rem;
+  font-size: .63rem;
+  color: #4a5e80;
+  font-family: 'Courier New', monospace;
+}
+
+/* Secondary instruments bar */
+.cockpit-secondary {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: .5rem;
+  border-top: 1px solid #121e30;
+  padding-top: .9rem;
+  position: relative;
+  z-index: 2;
+}
+
+.cockpit-readout-cell {
+  text-align: center;
+  padding: .55rem .3rem;
+  background: #07090e;
+  border-radius: 6px;
+  border: 1px solid #111e30;
+  transition: border-color 0.2s;
+}
+
+.cockpit-readout-cell:hover {
+  border-color: #1f3050;
+}
+
+.cockpit-readout-label {
+  font-size: .54rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: #2e3e58;
+  font-family: 'Courier New', monospace;
+  margin-bottom: .3rem;
+}
+
+.cockpit-readout-value {
+  font-size: .9rem;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+  color: #00e676;
+  text-shadow: 0 0 8px rgba(0, 230, 118, 0.55);
+}
+
+.cockpit-readout-value.ap-active {
+  color: #00aaff;
+  font-size: .72rem;
+  text-shadow: 0 0 8px rgba(0, 170, 255, 0.55);
+}
+
+
+/* =============================================================================
+   23. RESPONSIVE — MOBILE
    ============================================================================= */
 
 @media (max-width: 600px) {
@@ -790,4 +1115,97 @@ img[src$=".png"]:hover {
   main          { padding: 1rem; }
   .airport-code { font-size: 1.5rem; }
   .wx-strip     { grid-template-columns: 1fr; }
+  .cockpit-primary      { grid-template-columns: 1fr 1fr; }
+  .cockpit-secondary    { grid-template-columns: repeat(3, 1fr); }
+  .cockpit-compass-base,
+  .cockpit-vsi-svg      { max-width: 90px; }
+  .cockpit-ai-clip      { width: 90px; height: 90px; }
+  .cockpit-feeds-grid   { grid-template-columns: 1fr 1fr; }
+}
+
+
+/* =============================================================================
+   23. ATC AUDIO PLAYER
+   ============================================================================= */
+
+.atc-player {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.atc-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.atc-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.atc-label {
+  font-size: .68rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--muted);
+  margin-bottom: .6rem;
+  font-family: 'Courier New', monospace;
+}
+
+.atc-waveform {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 36px;
+}
+
+.atc-bar {
+  width: 3px;
+  border-radius: 2px;
+  background: var(--border);
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.atc-player.playing .atc-bar {
+  background: var(--green);
+  animation: barBounce 0.6s ease-in-out infinite alternate;
+}
+
+.atc-player.playing .atc-bar:nth-child(odd)  { animation-delay: 0s; }
+.atc-player.playing .atc-bar:nth-child(even) { animation-delay: 0.15s; }
+.atc-player.playing .atc-bar:nth-child(3n)   { animation-delay: 0.3s; }
+
+@keyframes barBounce {
+  from { transform: scaleY(0.3); opacity: 0.5; }
+  to   { transform: scaleY(1);   opacity: 1; }
+}
+
+.atc-btn-play {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: var(--green);
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+}
+
+.atc-btn-play:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 18px rgba(0, 230, 118, 0.5);
+}
+
+.atc-player.playing .atc-btn-play {
+  background: var(--red);
+  box-shadow: 0 0 18px rgba(255, 71, 87, 0.4);
 }

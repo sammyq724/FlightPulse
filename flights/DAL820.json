@@ -8,7 +8,7 @@
   "aircraft": {
     "type": "Airbus A321neo",
     "code": "A21N",
-    "tailNumber": "N/A"
+    "tailNumber": "N473DX"
   },
   "date": "2026-04-15",
   "departure": {
@@ -53,5 +53,16 @@
     "altitudePlanned": 34000,
     "speed": 449,
     "speedPlanned": 525
+  },
+  "cockpit": {
+    "heading": 272,
+    "verticalSpeed": -50,
+    "mach": 0.782,
+    "oat": -57,
+    "cabinAlt": 6800,
+    "autopilot": "LNAV/VNAV",
+    "bank": 1,
+    "pitch": 2,
+    "n1": 87
   }
 }

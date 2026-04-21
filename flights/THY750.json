@@ -1,6 +1,10 @@
 {
   "flightId": "THY750",
-  "aliases": ["THY750", "TK750", "TURKAIR750"],
+  "aliases": [
+    "THY750",
+    "TK750",
+    "TURKAIR750"
+  ],
   "airline": "Turkish Airlines",
   "iataCode": "TK750",
   "icaoCode": "THY750",
@@ -8,14 +12,14 @@
   "aircraft": {
     "type": "Airbus A330-300",
     "code": "A333",
-    "tailNumber": "N/A"
+    "tailNumber": "TC-LNB"
   },
   "date": "2026-04-16",
   "departure": {
     "iata": "IST",
     "name": "Istanbul Airport",
     "city": "Istanbul, Turkey",
-    "terminal": null,
+    "terminal": "D",
     "gate": "B15",
     "scheduledGate": "2026-04-16T00:40:00+03:00",
     "actualGate": "2026-04-16T00:50:00+03:00",
@@ -28,8 +32,8 @@
     "iata": "ISB",
     "name": "Islamabad International Airport",
     "city": "Islamabad, Pakistan",
-    "terminal": null,
-    "gate": null,
+    "terminal": "1",
+    "gate": "G9",
     "scheduledGate": "2026-04-16T07:45:00+05:00",
     "estimatedGate": "2026-04-16T08:05:00+05:00",
     "scheduledLanding": "2026-04-16T07:25:00+05:00",
@@ -53,5 +57,16 @@
     "altitudePlanned": 35000,
     "speed": 580,
     "speedPlanned": 517
+  },
+  "cockpit": {
+    "heading": 94,
+    "verticalSpeed": -80,
+    "mach": 0.791,
+    "oat": -56,
+    "cabinAlt": 7000,
+    "autopilot": "LNAV/VNAV",
+    "bank": -2,
+    "pitch": 1,
+    "n1": 89
   }
 }

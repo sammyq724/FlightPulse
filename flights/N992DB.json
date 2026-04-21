@@ -1,7 +1,10 @@
 {
   "flightId": "N992DB",
-  "aliases": ["N992DB", "ROCKETMAN"],
-  "airline": "Private — ROCKETMAN LLC",
+  "aliases": [
+    "N992DB",
+    "ROCKETMAN"
+  ],
+  "airline": "Private \u2014 ROCKETMAN LLC",
   "iataCode": "N992DB",
   "icaoCode": "N992DB",
   "status": "active",
@@ -15,8 +18,8 @@
     "iata": "PHX",
     "name": "Phoenix Sky Harbor International Airport",
     "city": "Phoenix, AZ",
-    "terminal": null,
-    "gate": null,
+    "terminal": "4",
+    "gate": "A3",
     "scheduledGate": "2026-04-15T15:00:00-07:00",
     "actualGate": "2026-04-15T15:00:00-07:00",
     "scheduledTakeoff": "2026-04-15T15:00:00-07:00",
@@ -28,8 +31,8 @@
     "iata": "3S8",
     "name": "Grants Pass Airport",
     "city": "Grants Pass, OR",
-    "terminal": null,
-    "gate": null,
+    "terminal": "FBO",
+    "gate": "1",
     "scheduledGate": "2026-04-15T17:13:00-07:00",
     "estimatedGate": "2026-04-15T17:31:00-07:00",
     "scheduledLanding": "2026-04-15T17:13:00-07:00",
@@ -37,7 +40,7 @@
     "taxiMinutes": 0,
     "delayMinutes": 18
   },
-  "route": "ZEPER2 RRSTA DOVEE BTY — northbound West Coast",
+  "route": "ZEPER2 RRSTA DOVEE BTY \u2014 northbound West Coast",
   "routeMapImage": "./images/N992DB_map.png",
   "altitudeGraphImage": "./images/N992DB_graph.png",
   "progress": {
@@ -53,5 +56,16 @@
     "altitudePlanned": 43000,
     "speed": 444,
     "speedPlanned": 490
+  },
+  "cockpit": {
+    "heading": 338,
+    "verticalSpeed": -60,
+    "mach": 0.673,
+    "oat": -67,
+    "cabinAlt": 7800,
+    "autopilot": "HDG/ALT",
+    "bank": 2,
+    "pitch": 1,
+    "n1": 82
   }
 }
