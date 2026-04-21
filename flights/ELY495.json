@@ -1,0 +1,72 @@
+{
+  "flightId": "ELY495",
+  "aliases": [
+    "ELY495",
+    "LY495",
+    "ELAL495"
+  ],
+  "airline": "El Al Israel Airlines",
+  "iataCode": "LY495",
+  "icaoCode": "ELY495",
+  "status": "active",
+  "aircraft": {
+    "type": "Boeing 737-800",
+    "code": "B738",
+    "tailNumber": "4X-EHD"
+  },
+  "date": "2026-04-16",
+  "departure": {
+    "iata": "TLV",
+    "name": "Ben Gurion International Airport",
+    "city": "Tel Aviv, Israel",
+    "terminal": "3",
+    "gate": "D14",
+    "scheduledGate": "2026-04-16T01:40:00+03:00",
+    "actualGate": "2026-04-16T01:45:00+03:00",
+    "scheduledTakeoff": "2026-04-16T01:50:00+03:00",
+    "actualTakeoff": "2026-04-16T01:59:00+03:00",
+    "taxiMinutes": 14,
+    "delayMinutes": 0
+  },
+  "arrival": {
+    "iata": "MAD",
+    "name": "Adolfo Suarez Madrid-Barajas Airport",
+    "city": "Madrid, Spain",
+    "terminal": "4S",
+    "gate": "S32",
+    "scheduledGate": "2026-04-16T06:00:00+02:00",
+    "estimatedGate": "2026-04-16T05:48:00+02:00",
+    "scheduledLanding": "2026-04-16T05:44:00+02:00",
+    "estimatedLanding": "2026-04-16T05:38:00+02:00",
+    "taxiMinutes": 10,
+    "delayMinutes": -12
+  },
+  "route": "Mediterranean crossing westbound",
+  "routeMapImage": "./images/ELY495_map.png",
+  "altitudeGraphImage": "./images/ELY495_graph.png",
+  "progress": {
+    "milesFlown": 39,
+    "milesDirect": 2205,
+    "milesPlanned": 2205,
+    "minutesElapsed": 20,
+    "minutesTotal": 303,
+    "percentComplete": 7
+  },
+  "telemetry": {
+    "altitude": 0,
+    "altitudePlanned": 35000,
+    "speed": 441,
+    "speedPlanned": 441
+  },
+  "cockpit": {
+    "heading": 298,
+    "verticalSpeed": 1800,
+    "mach": 0.421,
+    "oat": -14,
+    "cabinAlt": 3200,
+    "autopilot": "LNAV/CLB",
+    "bank": 2,
+    "pitch": 9,
+    "n1": 96
+  }
+}

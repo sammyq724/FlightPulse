@@ -1,0 +1,72 @@
+{
+  "flightId": "QFA28",
+  "aliases": [
+    "QFA28",
+    "QF28",
+    "QANTAS28"
+  ],
+  "airline": "Qantas Airways",
+  "iataCode": "QF28",
+  "icaoCode": "QFA28",
+  "status": "active",
+  "aircraft": {
+    "type": "Boeing 787-9 Dreamliner",
+    "code": "B789",
+    "tailNumber": "VH-ZND"
+  },
+  "date": "2026-04-15",
+  "departure": {
+    "iata": "SCL",
+    "name": "Comodoro Arturo Merino Benitez International Airport",
+    "city": "Santiago, Chile",
+    "terminal": "2",
+    "gate": "22",
+    "scheduledGate": "2026-04-15T13:10:00-04:00",
+    "actualGate": "2026-04-15T12:09:00-04:00",
+    "scheduledTakeoff": "2026-04-15T13:20:00-04:00",
+    "actualTakeoff": "2026-04-15T13:41:00-04:00",
+    "taxiMinutes": 92,
+    "delayMinutes": -61
+  },
+  "arrival": {
+    "iata": "SYD",
+    "name": "Sydney Kingsford Smith Airport",
+    "city": "Sydney, Australia",
+    "terminal": "1",
+    "gate": "34",
+    "scheduledGate": "2026-04-16T17:40:00+10:00",
+    "estimatedGate": "2026-04-16T16:56:00+10:00",
+    "scheduledLanding": "2026-04-16T17:30:00+10:00",
+    "estimatedLanding": "2026-04-16T16:26:00+10:00",
+    "taxiMinutes": 30,
+    "delayMinutes": -44
+  },
+  "route": "Trans-Pacific arc south of New Zealand",
+  "routeMapImage": "./images/QFA28_map.png",
+  "altitudeGraphImage": "./images/QFA28_graph.png",
+  "progress": {
+    "milesFlown": 3005,
+    "milesDirect": 7058,
+    "milesPlanned": 7058,
+    "minutesElapsed": 421,
+    "minutesTotal": 887,
+    "percentComplete": 47
+  },
+  "telemetry": {
+    "altitude": 33000,
+    "altitudePlanned": 33000,
+    "speed": 563,
+    "speedPlanned": 563
+  },
+  "cockpit": {
+    "heading": 244,
+    "verticalSpeed": -20,
+    "mach": 0.863,
+    "oat": -63,
+    "cabinAlt": 6500,
+    "autopilot": "LNAV/VNAV",
+    "bank": 0,
+    "pitch": 1,
+    "n1": 93
+  }
+}
