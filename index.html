@@ -23,6 +23,7 @@
     <div class="api-badge" id="badge-flights"><div class="dot"></div>Live Flights</div>
     <div class="api-badge" id="badge-weather"><div class="dot"></div>Weather</div>
   </div>
+  <div class="flightaware-credit">Data provided by FlightAware</div>
 </header>
 
 <!-- MAIN -->
@@ -330,9 +331,9 @@ function cockpitViewHTML(f) {
     const y1 = (50 + Math.sin(rad) * rI).toFixed(1);
     const x2 = (50 + Math.cos(rad) * 46).toFixed(1);
     const y2 = (50 + Math.sin(rad) * 46).toFixed(1);
-    compassInner += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${isCard ? '#2a4468' : '#161e30'}" stroke-width="${isCard ? 2 : 1}"/>`;
+    compassInner += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${isCard ? '#3a5888' : '#1f2d4a'}" stroke-width="${isCard ? 2 : 1}"/>`;
   }
-  [[0,'N','#ff4757'],[90,'E','#3a6090'],[180,'S','#3a6090'],[270,'W','#3a6090']].forEach(([deg,lbl,clr]) => {
+  [[0,'N','#ff4757'],[90,'E','#6b7a96'],[180,'S','#6b7a96'],[270,'W','#6b7a96']].forEach(([deg,lbl,clr]) => {
     const rad = (deg - 90) * Math.PI / 180;
     const x   = (50 + Math.cos(rad) * 25).toFixed(1);
     const y   = (50 + Math.sin(rad) * 25).toFixed(1);
@@ -349,13 +350,13 @@ function cockpitViewHTML(f) {
     const y1  = (50 + Math.sin(rad) * rI).toFixed(1);
     const x2  = (50 + Math.cos(rad) * 46).toFixed(1);
     const y2  = (50 + Math.sin(rad) * 46).toFixed(1);
-    const clr = v === 0 ? '#00aaff' : (Math.abs(v) >= 1500 ? '#ff4757' : '#1e2e48');
+    const clr = v === 0 ? '#00aaff' : (Math.abs(v) >= 1500 ? '#ff4757' : '#1f2d4a');
     vsiInner += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${clr}" stroke-width="${v === 0 ? 2.5 : 1.5}"/>`;
   });
   // VSI axis labels
   [[90,'+2k'],[-90,'-2k'],[0,'0']].forEach(([ang,lbl]) => {
     const rad = (ang - 90) * Math.PI / 180;
-    vsiInner += `<text x="${(50 + Math.cos(rad)*21).toFixed(1)}" y="${(50 + Math.sin(rad)*21).toFixed(1)}" text-anchor="middle" dominant-baseline="middle" font-size="6" fill="#2a3a5a" font-family="Courier New">${lbl}</text>`;
+    vsiInner += `<text x="${(50 + Math.cos(rad)*21).toFixed(1)}" y="${(50 + Math.sin(rad)*21).toFixed(1)}" text-anchor="middle" dominant-baseline="middle" font-size="6" fill="#6b7a96" font-family="Courier New">${lbl}</text>`;
   });
 
   const vsiAngle   = Math.max(-90, Math.min(90, c.verticalSpeed / 2000 * 90));
@@ -380,14 +381,14 @@ function cockpitViewHTML(f) {
             <div class="cockpit-panel-label">HSI / Heading</div>
             <div class="cockpit-compass-wrap">
               <svg class="cockpit-compass-base" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="49" fill="#020507" stroke="#1a2540" stroke-width="1.5"/>
+                <circle cx="50" cy="50" r="49" fill="#0e1525" stroke="#1f2d4a" stroke-width="1.5"/>
                 <g id="cockpit-compass-${id}" transform="rotate(${-c.heading},50,50)">
                   ${compassInner}
                 </g>
                 <!-- Lubber triangle (fixed, top = current heading) -->
                 <polygon points="50,3 47,12 53,12" fill="#ffab00"/>
                 <!-- Center hub -->
-                <circle cx="50" cy="50" r="11" fill="#020507" stroke="#1a2540" stroke-width="1"/>
+                <circle cx="50" cy="50" r="11" fill="#0e1525" stroke="#1f2d4a" stroke-width="1"/>
                 <text x="50" y="51" text-anchor="middle" dominant-baseline="middle" font-size="12" fill="#00aaff">✈</text>
               </svg>
               <div class="cockpit-readout-value" id="cockpit-hdg-${id}">${hdg}°</div>
@@ -424,12 +425,12 @@ function cockpitViewHTML(f) {
             <div class="cockpit-panel-label">Vertical Speed</div>
             <div class="cockpit-vsi-wrap">
               <svg class="cockpit-vsi-svg" viewBox="0 0 100 100">
-                <circle cx="50" cy="50" r="49" fill="#020507" stroke="#1a2540" stroke-width="1.5"/>
+                <circle cx="50" cy="50" r="49" fill="#0e1525" stroke="#1f2d4a" stroke-width="1.5"/>
                 ${vsiInner}
                 <g id="cockpit-vsi-needle-${id}" transform="rotate(${vsiAngle.toFixed(1)},50,50)">
-                  <line x1="50" y1="50" x2="50" y2="15" stroke="#00e676" stroke-width="2.5" stroke-linecap="round"/>
+                  <line x1="50" y1="50" x2="50" y2="15" stroke="#00aaff" stroke-width="2.5" stroke-linecap="round"/>
                 </g>
-                <circle cx="50" cy="50" r="4" fill="#020507" stroke="#00e676" stroke-width="1.5"/>
+                <circle cx="50" cy="50" r="4" fill="#0e1525" stroke="#00aaff" stroke-width="1.5"/>
               </svg>
               <div class="cockpit-readout-value" id="cockpit-vsi-${id}">${vsiSign}${c.verticalSpeed} ft/min</div>
             </div>
